@@ -1,5 +1,5 @@
 openlayers_js:
-  filter: rjsmin
+  filters: rjsmin
   output: ckanext-geoview/%(version)s_openlayers.js
   extra:
     preload:
@@ -24,7 +24,7 @@ geo-resource-styles_css:
     css/geo-resource-styles.css
 
 geojson_js:
-  filter: rjsmin
+  filters: rjsmin
   output: ckanext-geoview/%(version)s_geojson.js
   extra:
     preload:
