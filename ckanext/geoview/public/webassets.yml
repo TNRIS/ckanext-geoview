@@ -12,6 +12,7 @@ openlayers_js:
     - js/vendor/ol-helpers/ol-layer-switcher.js
     - js/ol_preview.js
 openlayers_css:
+  filters: cssmin
   output: ckanext-geoview/%(version)s_openlayers.css
   contents:
     - css/ol_preview.css
@@ -19,6 +20,7 @@ openlayers_css:
     - js/vendor/ol-helpers/ol-helpers.css
 
 geo-resource-styles_css:
+  filters: cssmin
   output: ckanext-geoview/%(version)s_geo-resource-styles.css
   contents:
     css/geo-resource-styles.css
@@ -37,6 +39,7 @@ geojson_js:
     - js/common_map.js
     - js/geojson_preview.js
 geojson_css:
+  filters: cssmin
   output: ckanext-geoview/%(version)s_geojson.css
   contents:
     - js/vendor/leaflet/leaflet.css
@@ -55,7 +58,7 @@ wmts_js:
     - js/common_map.js
     - js/wmts_preview.js
 wmts_css:
-  filters: cssrewrite
+  filters: cssmin
   output: ckanext-geoview/%(version)s_wmts.css
   contents:
     - js/vendor/leaflet/leaflet.css
@@ -80,6 +83,7 @@ shp_js:
     - js/common_map.js
     - js/shp_preview.js
 shp_css:
+  filters: cssmin
   output: ckanext-geoview/%(version)s_shp.css
   contents:
     - js/vendor/leaflet/leaflet.css
