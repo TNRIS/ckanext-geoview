@@ -38,12 +38,15 @@ geojson_js:
     - js/vendor/proj4leaflet/proj4leaflet.js
     - js/common_map.js
     - js/geojson_preview.js
+    - js/vendor/leaflet-markercluster/1.5.3/leaflet.markercluster.js
 geojson_css:
   filters: cssmin
   output: ckanext-geoview/%(version)s_geojson.css
   contents:
     - js/vendor/leaflet/leaflet.css
     - css/geojson_preview.css
+    - js/vendor/leaflet-markercluster/1.5.3/MarkerCluster.css
+    - js/vendor/leaflet-markercluster/1.5.3/MarkerCluster.Default.css
 
 wmts_js:
   filters: rjsmin
@@ -75,6 +78,7 @@ shp_js:
     - js/vendor/leaflet-providers/leaflet-providers.js
     - js/vendor/spin.js/spin.js
     - js/vendor/leaflet-spin/leaflet.spin.js
+    - js/vendor/leaflet-markercluster/1.5.3/leaflet.markercluster.js
     - js/vendor/proj4/proj4.js
     - js/vendor/shp2geojson/preview.js
     - js/vendor/shp2geojson/preprocess.js
@@ -88,3 +92,5 @@ shp_css:
   contents:
     - js/vendor/leaflet/leaflet.css
     - css/shp_preview.css
+    - js/vendor/leaflet-markercluster/1.5.3/MarkerCluster.css
+    - js/vendor/leaflet-markercluster/1.5.3/MarkerCluster.Default.css

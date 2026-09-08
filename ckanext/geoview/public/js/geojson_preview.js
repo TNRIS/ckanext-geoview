@@ -60,6 +60,9 @@ ckan.module('geojsonpreview', function (jQuery, _) {
 
     showPreview: function (geojsonFeature) {
       var self = this;
+      // Instantiate Leaflet Marker Cluster
+      var markers = L.markerClusterGroup();
+
       var gjLayer = L.Proj.geoJson(geojsonFeature, {
         style: self.options.style,
         onEachFeature: function(feature, layer) {
@@ -75,7 +78,12 @@ ckan.module('geojsonpreview', function (jQuery, _) {
             layer.bindPopup(popupContent);
           }
         }
-      }).addTo(self.map);
+      });
+      // .addTo(self.map);
+  
+      markers.addLayer(gjLayer);
+      self.map.addLayer(markers);
+
       self.map.fitBounds(gjLayer.getBounds());
     }
   };

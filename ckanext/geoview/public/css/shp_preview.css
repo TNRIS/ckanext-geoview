@@ -11,6 +11,10 @@ html, body {
   height: 100%;
 }
 
+#map:focus-visible {
+  1px solid var(--twdh-secondary);
+}
+
 #map .table{
   width: 300px;
 }
