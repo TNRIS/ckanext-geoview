@@ -62,7 +62,9 @@ ckan.module('shppreview', function (jQuery, _) {
       }
 
       // Instantiate Leaflet Marker Cluster
-      var markers = L.markerClusterGroup();
+      var markers = L.markerClusterGroup({
+        maxClusterRadius: 60
+      });
 
       self.map.spin(true);
       var gjLayer = L.geoJson([], {
