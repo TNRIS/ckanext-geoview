@@ -60,9 +60,10 @@ ckan.module('geojsonpreview', function (jQuery, _) {
 
     showPreview: function (geojsonFeature) {
       var self = this;
+
       // Instantiate Leaflet Marker Cluster
       var markers = L.markerClusterGroup({
-        maxClusterRadius: 60
+        maxClusterRadius: maxClusterRadius
       });
 
       var gjLayer = L.Proj.geoJson(geojsonFeature, {
