@@ -50,3 +50,13 @@ html, body {
 .leaflet-control-attribution {
   font-size: 11px;
 }
+
+.leaflet-popup-content .table th,
+.leaflet-popup-content .table td
+{
+
+  width: 50%;
+  overflow-wrap: anywhere;
+
+}
+
