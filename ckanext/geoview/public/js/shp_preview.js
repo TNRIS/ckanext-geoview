@@ -22,8 +22,13 @@ ckan.module('shppreview', function (jQuery, _) {
       self.map = ckan.commonLeafletMap('map', this.options.map_config, {
         attributionControl: false,
         keyboard: 1,
-        zoomDelta: 1
+        zoomDelta: 1,
+        scrollWheelZoom: false
       });
+
+      // Turn on scroolWheelZoom only when map is in focus
+      self.map.on('focus', function() { map.scrollWheelZoom.enable(); });
+      self.map.on('blur', function() { map.scrollWheelZoom.disable(); });
 
       // hack to make leaflet use a particular location to look for images
       L.Icon.Default.imagePath = this.options.site_url + 'js/vendor/leaflet/images/';
@@ -63,7 +68,8 @@ ckan.module('shppreview', function (jQuery, _) {
 
       // Instantiate Leaflet Marker Cluster
       var markers = L.markerClusterGroup({
-        maxClusterRadius: maxClusterRadius
+        maxClusterRadius: maxClusterRadius,
+        singleMarkerMode: true
       });
 
       self.map.spin(true);

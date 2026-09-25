@@ -23,7 +23,8 @@ geo-resource-styles_css:
   filters: cssmin
   output: ckanext-geoview/%(version)s_geo-resource-styles.css
   contents:
-    css/geo-resource-styles.css
+    - css/geo-resource-styles.css
+    - css/common.css
 
 geojson_js:
   filters: rjsmin
@@ -45,6 +46,8 @@ geojson_css:
   contents:
     - js/vendor/leaflet/leaflet.css
     - css/geojson_preview.css
+    - css/common.css
+    - js/vendor/leaflet/leaflet.css
     - js/vendor/leaflet-markercluster/1.5.3/MarkerCluster.css
     - js/vendor/leaflet-markercluster/1.5.3/MarkerCluster.Default.css
 
@@ -65,6 +68,7 @@ wmts_css:
   output: ckanext-geoview/%(version)s_wmts.css
   contents:
     - js/vendor/leaflet/leaflet.css
+    - css/common.css
     - css/wmts_preview.css
 
 shp_js:
@@ -91,6 +95,7 @@ shp_css:
   output: ckanext-geoview/%(version)s_shp.css
   contents:
     - js/vendor/leaflet/leaflet.css
+    - css/common.css
     - css/shp_preview.css
     - js/vendor/leaflet-markercluster/1.5.3/MarkerCluster.css
     - js/vendor/leaflet-markercluster/1.5.3/MarkerCluster.Default.css
