@@ -69,7 +69,7 @@ ckan.module('shppreview', function (jQuery, _) {
       // Instantiate Leaflet Marker Cluster
       var markers = L.markerClusterGroup({
         maxClusterRadius: maxClusterRadius,
-        singleMarkerMode: true
+        // singleMarkerMode: true
       });
 
       self.map.spin(true);
