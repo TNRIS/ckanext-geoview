@@ -29,7 +29,16 @@ ckan.module('geojsonpreview', function (jQuery, _) {
 
 
       self.el.append($("<div></div>").attr("id","map"));
-      self.map = ckan.commonLeafletMap('map', this.options.map_config, {attributionControl: false});
+      self.map = ckan.commonLeafletMap('map', this.options.map_config, {
+        attributionControl: false,
+        keyboard: 1,
+        zoomDelta: 1,
+        scrollWheelZoom: false
+      });
+
+      // Turn on scroolWheelZoom only when map is in focus
+      self.map.on('focus', function() { map.scrollWheelZoom.enable(); });
+      self.map.on('blur', function() { map.scrollWheelZoom.disable(); });
 
       // hack to make leaflet use a particular location to look for images
       L.Icon.Default.imagePath = this.options.site_url + 'js/vendor/leaflet/images/';
@@ -60,6 +69,12 @@ ckan.module('geojsonpreview', function (jQuery, _) {
 
     showPreview: function (geojsonFeature) {
       var self = this;
+
+      // Instantiate Leaflet Marker Cluster
+      var markers = L.markerClusterGroup({
+        maxClusterRadius: maxClusterRadius
+      });
+
       var gjLayer = L.Proj.geoJson(geojsonFeature, {
         style: self.options.style,
         onEachFeature: function(feature, layer) {
@@ -75,7 +90,12 @@ ckan.module('geojsonpreview', function (jQuery, _) {
             layer.bindPopup(popupContent);
           }
         }
-      }).addTo(self.map);
+      });
+      // .addTo(self.map);
+  
+      markers.addLayer(gjLayer);
+      self.map.addLayer(markers);
+
       self.map.fitBounds(gjLayer.getBounds());
     }
   };

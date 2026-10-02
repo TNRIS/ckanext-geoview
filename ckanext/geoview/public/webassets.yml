@@ -1,5 +1,5 @@
 openlayers_js:
-  filter: rjsmin
+  filters: rjsmin
   output: ckanext-geoview/%(version)s_openlayers.js
   extra:
     preload:
@@ -12,6 +12,7 @@ openlayers_js:
     - js/vendor/ol-helpers/ol-layer-switcher.js
     - js/ol_preview.js
 openlayers_css:
+  filters: cssmin
   output: ckanext-geoview/%(version)s_openlayers.css
   contents:
     - css/ol_preview.css
@@ -19,12 +20,14 @@ openlayers_css:
     - js/vendor/ol-helpers/ol-helpers.css
 
 geo-resource-styles_css:
+  filters: cssmin
   output: ckanext-geoview/%(version)s_geo-resource-styles.css
   contents:
-    css/geo-resource-styles.css
+    - css/geo-resource-styles.css
+    - css/common.css
 
 geojson_js:
-  filter: rjsmin
+  filters: rjsmin
   output: ckanext-geoview/%(version)s_geojson.js
   extra:
     preload:
@@ -36,11 +39,17 @@ geojson_js:
     - js/vendor/proj4leaflet/proj4leaflet.js
     - js/common_map.js
     - js/geojson_preview.js
+    - js/vendor/leaflet-markercluster/1.5.3/leaflet.markercluster.js
 geojson_css:
+  filters: cssmin
   output: ckanext-geoview/%(version)s_geojson.css
   contents:
     - js/vendor/leaflet/leaflet.css
     - css/geojson_preview.css
+    - css/common.css
+    - js/vendor/leaflet/leaflet.css
+    - js/vendor/leaflet-markercluster/1.5.3/MarkerCluster.css
+    - js/vendor/leaflet-markercluster/1.5.3/MarkerCluster.Default.css
 
 wmts_js:
   filters: rjsmin
@@ -55,10 +64,11 @@ wmts_js:
     - js/common_map.js
     - js/wmts_preview.js
 wmts_css:
-  filters: cssrewrite
+  filters: cssmin
   output: ckanext-geoview/%(version)s_wmts.css
   contents:
     - js/vendor/leaflet/leaflet.css
+    - css/common.css
     - css/wmts_preview.css
 
 shp_js:
@@ -72,6 +82,7 @@ shp_js:
     - js/vendor/leaflet-providers/leaflet-providers.js
     - js/vendor/spin.js/spin.js
     - js/vendor/leaflet-spin/leaflet.spin.js
+    - js/vendor/leaflet-markercluster/1.5.3/leaflet.markercluster.js
     - js/vendor/proj4/proj4.js
     - js/vendor/shp2geojson/preview.js
     - js/vendor/shp2geojson/preprocess.js
@@ -80,7 +91,11 @@ shp_js:
     - js/common_map.js
     - js/shp_preview.js
 shp_css:
+  filters: cssmin
   output: ckanext-geoview/%(version)s_shp.css
   contents:
     - js/vendor/leaflet/leaflet.css
+    - css/common.css
     - css/shp_preview.css
+    - js/vendor/leaflet-markercluster/1.5.3/MarkerCluster.css
+    - js/vendor/leaflet-markercluster/1.5.3/MarkerCluster.Default.css

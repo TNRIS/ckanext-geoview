@@ -19,7 +19,16 @@ ckan.module('shppreview', function (jQuery, _) {
 
       self.el.empty();
       self.el.append($('<div></div>').attr('id', 'map'));
-      self.map = ckan.commonLeafletMap('map', this.options.map_config, {attributionControl: false});
+      self.map = ckan.commonLeafletMap('map', this.options.map_config, {
+        attributionControl: false,
+        keyboard: 1,
+        zoomDelta: 1,
+        scrollWheelZoom: false
+      });
+
+      // Turn on scroolWheelZoom only when map is in focus
+      self.map.on('focus', function() { map.scrollWheelZoom.enable(); });
+      self.map.on('blur', function() { map.scrollWheelZoom.disable(); });
 
       // hack to make leaflet use a particular location to look for images
       L.Icon.Default.imagePath = this.options.site_url + 'js/vendor/leaflet/images/';
@@ -57,6 +66,12 @@ ckan.module('shppreview', function (jQuery, _) {
         });
       }
 
+      // Instantiate Leaflet Marker Cluster
+      var markers = L.markerClusterGroup({
+        maxClusterRadius: maxClusterRadius,
+        // singleMarkerMode: true
+      });
+
       self.map.spin(true);
       var gjLayer = L.geoJson([], {
         style: self.options.style,
@@ -70,9 +85,11 @@ ckan.module('shppreview', function (jQuery, _) {
           });
           var popupContent = L.Util.template(self.options.table, {body: body});
           layer.bindPopup(popupContent);
-	  layer.on({click: highLightStyle});
+	        layer.on({click: highLightStyle});
         }
-      }).addTo(self.map);
+      })
+      
+      // gjLayer.addTo(self.map);
 
       if (preload_resource.encoding)
         encoding = preload_resource.encoding;
@@ -94,6 +111,10 @@ ckan.module('shppreview', function (jQuery, _) {
         EPSG: crs
       }, function(data) {
         gjLayer.addData(data);
+
+        markers.addLayer(gjLayer);
+        self.map.addLayer(markers);
+
         self.map.fitBounds(gjLayer.getBounds());
         self.map.spin(false);
       });
